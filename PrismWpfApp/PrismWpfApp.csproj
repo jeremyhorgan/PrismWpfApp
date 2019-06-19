@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Repository\" />
     <Folder Include="ViewModel\" />
     <Folder Include="View\" />
   </ItemGroup>
