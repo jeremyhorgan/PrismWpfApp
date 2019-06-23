@@ -149,5 +149,20 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OpenFolder_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ApplicationRunning_16x.png" />
+    <Resource Include="Images\Cancel_16x.png" />
+    <Resource Include="Images\CloudRun_16x.png" />
+    <Resource Include="Images\Run_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\StatusInformation_cyan_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Restart_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

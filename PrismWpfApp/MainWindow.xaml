@@ -8,6 +8,71 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button ToolTip="Open the Excel document that contains the Experiment definition">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PrismWpfApp;component/Images/OpenFolder_16x.png" />
+                            <TextBlock Margin="3,0,0,0">Open</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <ToggleButton Name="RunToggleButton" ToolTip="Run the Experiment using the WITNESS.io service or locally on this machine">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PrismWpfApp;component/Images/ApplicationRunning_16x.png" />
+                            <TextBlock Margin="3,0,0,0">Run</TextBlock>
+                        </StackPanel>
+                    </ToggleButton>
+                    <Popup x:Name="RunPopup" PlacementTarget="{Binding ElementName=RunToggleButton}">
+                        <Border>
+                            <StackPanel>
+                                <Button ToolTip="Run the Experiment using WITNESS.io">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/PrismWpfApp;component/Images/CloudRun_16x.png" />
+                                        <TextBlock Margin="3,0,0,0">WITNESS.io</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button ToolTip="Run the Experiment using WITNESS (local)">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/PrismWpfApp;component/Images/ApplicationRunning_16x.png" />
+                                        <TextBlock Margin="3,0,0,0">WITNESS</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
+                    <Button ToolTip="Continue with the Experiment">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PrismWpfApp;component/Images/Restart_16x.png" />
+                            <TextBlock Margin="3,0,0,0">Continue</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button ToolTip="Cancel the Experiment">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PrismWpfApp;component/Images/Cancel_16x.png" />
+                            <TextBlock Margin="3,0,0,0">Cancel</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button ToolTip="Information about the application">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PrismWpfApp;component/Images/StatusInformation_cyan_16x.png" />
+                            <TextBlock Margin="3,0,0,0">About</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+
+            <StackPanel DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button Content="Button1"></Button>
+                    <Button Content="Button2"></Button>
+                    <Menu>
+                        <MenuItem Header="Menu">
+                            <MenuItem Header="MenuItem1"/>
+                        </MenuItem>
+                    </Menu>
+                </ToolBar>
+            </StackPanel>
+
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem>
                     <TextBlock Name="StatusText" Text="Ready" />
