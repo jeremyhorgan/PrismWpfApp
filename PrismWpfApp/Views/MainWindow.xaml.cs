@@ -1,7 +1,6 @@
 ﻿using System.Windows;
-using System.Windows.Controls.Primitives;
 
-namespace PrismWpfApp
+namespace PrismWpfApp.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
