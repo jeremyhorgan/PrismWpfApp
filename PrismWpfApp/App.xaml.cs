@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using Prism.Ioc;
+using Prism.Logging;
 using Prism.Unity;
+using PrismWpfApp.Infrastructure;
 using PrismWpfApp.Repository;
 using PrismWpfApp.Views;
 
@@ -15,6 +17,7 @@ namespace PrismWpfApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IExcelRepository, ExcelRepository>();
+            containerRegistry.Register<ILoggerFacade, ApplicationLogger>();
         }
 
         protected override Window CreateShell()

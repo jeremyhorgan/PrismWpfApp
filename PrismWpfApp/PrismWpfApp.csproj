@@ -84,6 +84,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Infrastructure\ApplicationLogger.cs" />
     <Compile Include="Repository\ExcelRepository.cs" />
     <Compile Include="Repository\IExcelRepository.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
