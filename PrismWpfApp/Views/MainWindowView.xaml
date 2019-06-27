@@ -1,4 +1,5 @@
-﻿<Window x:Class="PrismWpfApp.Views.MainWindow"
+﻿<Window x:Class="PrismWpfApp.Views.MainWindowView"
+        xmlns:views="clr-namespace:PrismWpfApp.Views"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,40 +21,28 @@
                     <Button ToolTip="Saves the state to the Excel document that contains the Experiment definition" Command="{Binding SaveOpenCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/PrismWpfApp;component/Images/Save_16x.png" />
-                            <TextBlock Margin="3,0,0,0">Open</TextBlock>
+                            <TextBlock Margin="3,0,0,0">Save</TextBlock>
                         </StackPanel>
                     </Button>
-                    <ToggleButton Name="RunToggleButton" ToolTip="Run the Experiment using the WITNESS.io service or locally on this machine">
+                    <Button ToolTip="Run the Experiment using WITNESS.io" Command="{Binding RunCloudCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PrismWpfApp;component/Images/CloudRun_16x.png" />
+                            <TextBlock Margin="3,0,0,0">WITNESS.io</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button ToolTip="Run the Experiment using WITNESS (local)" Command="{Binding FileOpenCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/PrismWpfApp;component/Images/ApplicationRunning_16x.png" />
-                            <TextBlock Margin="3,0,0,0">Run</TextBlock>
+                            <TextBlock Margin="3,0,0,0">WITNESS</TextBlock>
                         </StackPanel>
-                    </ToggleButton>
-                    <Popup x:Name="RunPopup" PlacementTarget="{Binding ElementName=RunToggleButton}">
-                        <Border>
-                            <StackPanel>
-                                <Button ToolTip="Run the Experiment using WITNESS.io">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/PrismWpfApp;component/Images/CloudRun_16x.png" />
-                                        <TextBlock Margin="3,0,0,0">WITNESS.io</TextBlock>
-                                    </StackPanel>
-                                </Button>
-                                <Button ToolTip="Run the Experiment using WITNESS (local)">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/PrismWpfApp;component/Images/ApplicationRunning_16x.png" />
-                                        <TextBlock Margin="3,0,0,0">WITNESS</TextBlock>
-                                    </StackPanel>
-                                </Button>
-                            </StackPanel>
-                        </Border>
-                    </Popup>
-                    <Button ToolTip="Continue with the Experiment">
+                    </Button>
+                    <Button ToolTip="Continue with the Experiment" Command="{Binding FileOpenCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/PrismWpfApp;component/Images/Restart_16x.png" />
                             <TextBlock Margin="3,0,0,0">Continue</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button ToolTip="Cancel the Experiment">
+                    <Button ToolTip="Cancel the Experiment" Command="{Binding CancelCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/PrismWpfApp;component/Images/Cancel_16x.png" />
                             <TextBlock Margin="3,0,0,0">Cancel</TextBlock>
@@ -73,9 +62,12 @@
                     <TextBlock Name="StatusText" Text="Ready" />
                 </StatusBarItem>
             </StatusBar>
-            <TextBox Text="This is some text" TextWrapping="Wrap" 
-                     VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
-            </TextBox>
+
+            <Canvas>
+                <views:ProcessStepView Canvas.Left="50" Canvas.Top="50" Width="150" Height="100" StepNumber="1" StepName="Step1" />
+                <views:ProcessStepView Canvas.Left="250" Canvas.Top="50" Width="150" Height="100" StepNumber="2" StepName="Step2" />
+            </Canvas>
+
         </DockPanel>
     </Grid>
 </Window>

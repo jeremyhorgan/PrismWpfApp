@@ -22,7 +22,7 @@ namespace PrismWpfApp
 
         protected override Window CreateShell()
         {
-            return Container.Resolve<MainWindow>();
+            return Container.Resolve<MainWindowView>();
         }
     }
 }

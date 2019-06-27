@@ -3,12 +3,12 @@
 namespace PrismWpfApp.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml.
+    /// Interaction logic for MainWindowView.xaml.
     /// </summary>
     // ReSharper disable once RedundantExtendsListEntry
-    public partial class MainWindow : Window
+    public partial class MainWindowView : Window
     {
-        public MainWindow()
+        public MainWindowView()
         {
             InitializeComponent();
         }
