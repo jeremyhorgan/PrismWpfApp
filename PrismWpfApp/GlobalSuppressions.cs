@@ -10,3 +10,4 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1309:Field names should not begin with underscore", Justification = "Lanner Rule")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "Demo App")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CS1591:Missing XML comment for publicly visible type or member", Justification = "Demo App")]

@@ -45,7 +45,7 @@ namespace PrismWpfApp.ViewModels
 
         protected virtual void Dispose(bool disposing)
         {
-            _cancellationToken.Dispose();
+            _cancellationToken?.Dispose();
         }
 
         private void DoWork(object state)
