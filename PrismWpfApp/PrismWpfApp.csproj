@@ -77,6 +77,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Infrastructure\Events\ExecuteStepProgressEventArgs.cs" />
+    <Compile Include="Infrastructure\IOpenFileDialogService.cs" />
+    <Compile Include="Infrastructure\OpenFileDialogService.cs" />
+    <Compile Include="Model\ApplicationState.cs" />
     <Compile Include="ProcessSteps\ExecuteCreateZipFileProcessStep.cs" />
     <Compile Include="ProcessSteps\ExecuteExcelToCsvProcessStep.cs" />
     <Compile Include="Infrastructure\Events\ExecuteStepProgressEvent.cs" />
@@ -149,9 +152,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>

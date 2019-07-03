@@ -1,27 +1,40 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Threading;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Logging;
+using Prism.Mvvm;
+using PrismWpfApp.Infrastructure;
+using PrismWpfApp.Model;
 using PrismWpfApp.ProcessSteps;
 using PrismWpfApp.Repository;
 
 namespace PrismWpfApp.ViewModels
 {
-    public class MainWindowViewModel : IDisposable
+    public class MainWindowViewModel : BindableBase, IDisposable
     {
         private readonly IExcelRepository _excelRepository;
+        private readonly IOpenFileDialogService _openFileDialogService;
         private readonly ILoggerFacade _logger;
         private readonly IEventAggregator _eventAggregator;
+        private readonly ApplicationState _applicationState;
         private CancellationTokenSource _cancellationToken;
         private bool _isRunning;
 
-        public MainWindowViewModel(IEventAggregator eventAggregator, ILoggerFacade logger, IExcelRepository excelRepository)
+        public MainWindowViewModel(
+            IEventAggregator eventAggregator,
+            ILoggerFacade logger,
+            IExcelRepository excelRepository,
+            IOpenFileDialogService openFileDialogService,
+            ApplicationState applicationState)
         {
             _eventAggregator = eventAggregator;
             _logger = logger;
             _excelRepository = excelRepository;
+            _openFileDialogService = openFileDialogService;
+            _applicationState = applicationState;
 
             FileOpenCommand = new DelegateCommand(FileOpen, CanFileOpen);
             SaveOpenCommand = new DelegateCommand(FileSave, CanFileSave);
@@ -65,19 +78,23 @@ namespace PrismWpfApp.ViewModels
                 _isRunning = false;
                 RunCloudCommand.RaiseCanExecuteChanged();
                 CancelCommand.RaiseCanExecuteChanged();
+                FileOpenCommand.RaiseCanExecuteChanged();
             });
         }
 
         private void FileOpen()
         {
-            _logger.Log("File open command", Category.Debug, Priority.None);
-
-            // TODO: Implement IOpenFileDialogService https://github.com/PrismLibrary/Prism/issues/1666
+            var filename = _openFileDialogService.Show();
+            if (!string.IsNullOrEmpty(filename))
+            {
+                _applicationState.ExcelFilename = filename;
+                RunCloudCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private bool CanFileOpen()
         {
-            return false;
+            return !_isRunning;
         }
 
         private void FileSave()
@@ -94,6 +111,7 @@ namespace PrismWpfApp.ViewModels
         {
             _isRunning = true;
             CancelCommand.RaiseCanExecuteChanged();
+            FileOpenCommand.RaiseCanExecuteChanged();
 
             _cancellationToken = new CancellationTokenSource();
             ThreadPool.QueueUserWorkItem(DoWork, _cancellationToken);
@@ -101,7 +119,7 @@ namespace PrismWpfApp.ViewModels
 
         private bool CanRunCloud()
         {
-            return !_isRunning;
+            return !_isRunning && File.Exists(_applicationState.ExcelFilename);
         }
 
         private void Cancel()
